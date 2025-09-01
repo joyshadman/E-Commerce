@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+.container {
+    margin: 0 auto;
+}
+
+@layer base {
+
+    .sm\:container {
+        max-width: 640px;
+    }
+    .md\:container {
+        max-width: 768px;
+    }
+    .lg\:container {
+        max-width: 1024px;
+    }
+    .xl\:container {
+        max-width: 1170px;
+    }
+}
+
