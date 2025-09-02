@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import logo from '../assets/Logo.svg';
+import { CiSearch } from "react-icons/ci";
+import { FaRegHeart } from "react-icons/fa";
+import { IoCartOutline } from "react-icons/io5";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +14,7 @@ const Navbar = () => {
     <div id="navbar">
     
       <div className="bg-black w-full h-[48px] flex justify-center items-center px-4 text-[14px] text-[#fafafa]">
-        <div className="flex flex-col md:flex-row items-center justify-between w-[770px] max-w-7xl">
+        <div className="flex flex-col md:flex-row items-center ml-70 justify-between w-[870px] max-w-7xl">
           <div className="flex items-center text-center md:text-left">
             <h1 className="font-[400]">
               Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
@@ -53,6 +57,29 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+          <div className="container  ">
+            <img src={logo} alt="logo" className="mt-[47px] cursor-pointer "/>
+            <div className="">
+              <ul className="flex gap-8 text-[14px] font-[450] mt-[-20px] cursor-pointer justify-center">
+                <li>Home</li>
+                <li>Contact</li>
+                <li>About</li>
+                <li>Sign up</li>
+              </ul>
+              <div className="justify-end flex mt-[-10px] ">
+                <input type="text" className="flex mt-[-15px] w-[224px] h-[34px] bg-[#F5F5F5] text-black text-center text-[12px]" placeholder="What are you looking for? " />
+                <CiSearch className="relative right-8 top-[-10px] text-[30px] text-black cursor-pointer"/>
+                <div className="flex gap-4 ml-8 text-[20px] text-black">
+
+                <FaRegHeart className=" cursor-pointer"/>
+                <IoCartOutline className="text-[25px] cursor-pointer mt-[-2px]"/>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+
     </div>
   );
 };
