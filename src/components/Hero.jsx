@@ -1,57 +1,71 @@
 import React from "react";
-import CustomSlider from "../hooks/custom.slider.jsx";
-
+import "../css/Hero.css";
+import { Slide } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
 import img1 from "../assets/banner.png";
-import img2 from "../assets/banner.png";
-import img3 from "../assets/banner.png";
+import { FaChevronRight } from "react-icons/fa";
+
+const divStyle = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundSize: "cover",
+  height: "400px",
+  width: "892px",
+};
+
+// Slide images
+const slideImages = [
+  { url: img1 },
+  { url: img1 },
+  { url: img1 },
+  { url: img1 },
+];
+
+// Custom indicator
+const indicator = (index) => (
+  <div className="indicator-dot" key={index}></div>
+);
 
 const Hero = () => {
-  const images = [img1, img2, img3];
-
   return (
-    <div className="container mx-auto py-4 px-4 flex gap-6">
-      {/* 🔹 Categories */}
-      <div className="w-1/4 flex flex-col space-y-2 font-poppins text-[16px] font-normal leading-6 cursor-pointer">
-        <details className="border-b border-gray-400">
-          <summary className="py-2">Woman’s Fashion</summary>
-          <ul className="pl-4">
-            <li>Top</li>
-            <li>Dress</li>
-            <li>Pants</li>
-          </ul>
-        </details>
+    <div className="container mx-auto py-4 px-4 flex gap-6 md:flex-row flex-col">
+      {/* Categories */}
+      <div className="w-[236px] flex flex-col space-y-2 font-poppins text-[16px] font-normal leading-6 cursor-pointer border-r ">
 
-        <details className="border-b border-gray-400">
-          <summary className="py-2">Men’s Fashion</summary>
-          <ul className="pl-4">
-            <li>Shirt</li>
-            <li>Pants</li>
-            <li>Shoes</li>
-          </ul>
-        </details>
-
-        {/* Other categories */}
-        <div className="border-b border-gray-400 py-2">Electronics</div>
-        <div className="border-b border-gray-400 py-2">Home & Lifestyle</div>
-        <div className="border-b border-gray-400 py-2">Medicine</div>
-        <div className="border-b border-gray-400 py-2">Sports & Outdoor</div>
-        <div className="border-b border-gray-400 py-2">Baby’s & Toys</div>
-        <div className="border-b border-gray-400 py-2">Groceries</div>
-        <div className="border-b border-gray-400 py-2">Health & Beauty</div>
+        <div className="py-2 flex justify-between items-center">
+          Women’s Fashion
+          <FaChevronRight className="text-[17px] mr-8" />
+        </div>
+        <div className="py-2 flex justify-between items-center">
+          Men’s Fashion
+          <FaChevronRight className="text-[17px] mr-8" />
+        </div>
+        <div className="py-2">Electronics</div>
+        <div className="py-2">Home & Lifestyle</div>
+        <div className="py-2">Medicine</div>
+        <div className="py-2">Sports & Outdoor</div>
+        <div className="py-2">Baby’s & Toys</div>
+        <div className="py-2">Groceries</div>
+        <div className="py-2">Health & Beauty</div>
       </div>
 
-      {/* 🔹 Slider */}
-      <div className="w-3/4 mt-5">
-        <CustomSlider>
-          {images.map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt={`Slide ${index + 1}`}
-              className="w-full h-[344px] object-cover rounded"
-            />
+      {/* Banner slider */}
+      <div className="w-3/4 slide-container relative md:w-3/4 ">
+        <Slide
+          autoplay={true}
+          duration={3000}
+          transitionDuration={500}
+          indicators={indicator}
+        >
+          {slideImages.map((slideImage, index) => (
+            <div key={index}>
+              <div
+                style={{ ...divStyle, backgroundImage: `url(${slideImage.url})` }}
+              ></div>
+            </div>
           ))}
-        </CustomSlider>
+        </Slide>
       </div>
     </div>
   );

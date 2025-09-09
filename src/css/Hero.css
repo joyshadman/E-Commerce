@@ -1,0 +1,31 @@
+@import "react-slideshow-image/dist/styles.css";
+
+
+.slide-container .indicators {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.indicator-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: white;
+    margin: 0 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator-dot.active {
+    border: 3px solid white;
+    background: red;
+     width: 16px;
+    height: 16px;
+
+}
+

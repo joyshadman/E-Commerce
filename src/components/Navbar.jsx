@@ -20,7 +20,7 @@ const Navbar = () => {
             <h1 className="font-[400] text-center">
               Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
             </h1>
-            <a href="#" className="font-[600] ml-4 hover:underline">
+            <a href="#" className="font-[600] ml-4 hover:underline transform transition-all duration-300 ease-in-out">
               ShopNow
             </a>
           </div>
