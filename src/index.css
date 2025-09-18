@@ -5,3 +5,10 @@
     max-width: 1170px;
 
 }
+
+:root {
+
+  --primary: #db4444;
+  --secondary: #F5F5F5;
+
+}

@@ -1,31 +1,87 @@
-@import "react-slideshow-image/dist/styles.css";
+/* Hero.css */
 
+.container {
+  max-width: 1200px;
+}
 
-.slide-container .indicators {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 200px;
+}
+
+@media (min-width: 640px) {
+  .slider-container {
+    height: 400px;
+  }
+}
+
+.slider-container .slick-list,
+.slider-container .slick-track {
+  height: 100%;
+}
+
+.custom-pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 30;
+  pointer-events: auto;
+  gap: 6px;
 }
 
 .indicator-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: white;
-    margin: 0 6px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgb(75, 75, 75);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  padding: 0;
+  display: block;
+}
+
+.indicator-dot:hover {
+  transform: scale(1.2);
 }
 
 .indicator-dot.active {
-    border: 3px solid white;
-    background: red;
-     width: 16px;
-    height: 16px;
-
+  border: 2px solid white;
+  background: red;
+  width: 14px;
+  height: 14px;
 }
 
+@media (min-width: 640px) {
+  .indicator-dot {
+    width: 14px;
+    height: 14px;
+  }
+  .indicator-dot.active {
+    width: 16px;
+    height: 16px;
+    border: 3px solid white;
+  }
+}
+
+.slider-container {
+  cursor: grab;
+}
+
+.slider-container:active {
+  cursor: grabbing;
+}
+
+.slider-container .slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-position: center;
+
+}
