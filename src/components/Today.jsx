@@ -2,12 +2,14 @@ import React, { useEffect, useState, useRef } from "react";
 import { countDownDateAndTime } from "countdown-date-time";
 import Slider from "react-slick";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
-import Card from "../components/Card";
+import Card from './Card.jsx'; 
+
 
 import gamepadImg from "../assets/product/gamepad.png";
 import keyboardImg from "../assets/product/keyboard.png";
 import monitorImg from "../assets/product/monitor.png";
 import chairImg from "../assets/product/chair.png";
+
 
 const products = [
   {
@@ -57,8 +59,9 @@ const products = [
   },
 ];
 
+
 const Today = () => {
-  const conduct_date = "2025-09-21 20:33:59";
+  const conduct_date = "2025-09-25 21:33:59";
   const [count, setCount] = useState({
     days: 0,
     hours: 0,
@@ -109,6 +112,7 @@ const Today = () => {
   return (
     <section id="today" className="container mx-auto px-4 ">
       {/* Section Title */}
+      
       <div className="flex items-center gap-3 mt-20">
         <div className="w-[20px] h-[40px] bg-[#db4444]"></div>
         <h1 className="text-[16px] font-poppins font-[600] text-[#db4444] my-8">
@@ -171,8 +175,9 @@ const Today = () => {
 
 
       <div className="text-center mt-8">
-        <button className="bg-[#db4444] rounded-sm w-[234px] h-[50px] hover:scale-110 transition-transform cursor-pointer">
-          <h1 className="font-[16px] font-poppins text-[#fafafa] font-[400] leading-[24px] tracking-[0] ">
+        <button className="bg-[#db4444] rounded-sm w-[234px] h-[50px] hover:scale-110 transition-transform cursor-pointer mb-[140px] ease-linear duration-300">
+          <h1 className="text-[16px] font-poppins text-[#fafafa] font-[400] leading-[24px] tracking-normal
+ ">
             View All Products
             </h1>
         </button>

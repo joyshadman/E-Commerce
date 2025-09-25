@@ -19,7 +19,7 @@ const Card = ({ product }) => {
         />
 
     
-        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+        <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer ease-linear ">
           <h1 className="text-[14px] font-poppins text-white font-medium text-center p-2">
             Add To Cart
           </h1>
