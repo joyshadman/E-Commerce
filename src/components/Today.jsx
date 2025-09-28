@@ -61,7 +61,7 @@ const products = [
 
 
 const Today = () => {
-  const conduct_date = "2025-09-25 21:33:59";
+  const conduct_date = "2026-09-25 21:33:59";
   const [count, setCount] = useState({
     days: 0,
     hours: 0,
@@ -111,7 +111,6 @@ const Today = () => {
 
   return (
     <section id="today" className="container mx-auto px-4 ">
-      {/* Section Title */}
       
       <div className="flex items-center gap-3 mt-20">
         <div className="w-[20px] h-[40px] bg-[#db4444]"></div>

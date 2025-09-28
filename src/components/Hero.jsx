@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
 import { FaChevronRight, FaRegHeart } from "react-icons/fa";
-import { HiOutlineBars3BottomLeft } from "react-icons/hi2";
-import { MdClose, MdMenu } from "react-icons/md";
-import { CiSearch } from "react-icons/ci";
-import { IoCartOutline } from "react-icons/io5";
+import { MdClose, MdMenu } from "react-icons/md";;
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import img1 from "../assets/banner.png";
@@ -61,7 +58,7 @@ const Hero = () => {
 
   return (
     <div className="container mx-auto  flex gap-6 md:flex-row flex-col">
-      {/* Categories Sidebar */}
+
       <div className="w-full  mt-5 md:w-[236px] flex-col space-y-2 font-poppins text-[16px] font-normal leading-6 cursor-pointer md:border-r md:h-[420px] lg:block lg:pr-4 hidden sm:hidden">
         <div className="py-2 flex justify-between items-center relative cursor-pointer text-black hover:text-black
               after:absolute after:left-0 after:bottom-0 after:h-[2px] 

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { countDownDateAndTime } from "countdown-date-time";
+import { FaShoppingCart } from "react-icons/fa"; 
 
-
-
-
-const conduct_date = "2025-09-25 21:33:59";
+const conduct_date = "2026-09-25 21:33:59";
 
 const Banner = () => {
   const [count, setCount] = useState({
@@ -27,43 +25,49 @@ const Banner = () => {
 
     updateCountdown();
     const intervalId = setInterval(updateCountdown, 1000);
-
     return () => clearInterval(intervalId);
   }, []);
 
   return (
     <div className="container mx-auto px-4">
-      <div className="w-full h-[500px] sm:h-[400px] md:h-[500px] bg-[url('./assets/product/banner.png')] bg-cover bg-center bg-no-repeat mt-[140px] relative">
+      <div className="relative w-full h-[400px] sm:h-[500px] bg-[url('./assets/product/banner.png')] bg-cover bg-center bg-no-repeat mt-[100px] sm:mt-[140px] rounded-lg overflow-hidden">
 
-        <div className="absolute top-[60px] left-[60px] transform -translate-x-1/2 sm:left-[60px] sm:translate-x-0 w-[90%] sm:w-[500px] ">
-          <h1 className="text-[14px] sm:text-[16px] font-poppins font-semibold text-[#00ff66] leading-[18px] sm:leading-[20px] tracking-[0]">
+      
+        <div className="absolute top-[50%] left-[10%] sm:left-[60px] -translate-y-1/2 w-[90%] sm:w-[500px] text-left">
+          
+          <h1 className="text-[14px] sm:text-[16px] font-poppins font-semibold text-[#00ff66] leading-[18px] sm:leading-[20px]">
             Categories
           </h1>
 
-          <h1 className="text-[32px] sm:text-[48px] font-inter font-semibold text-[#fafafa] leading-[40px] sm:leading-[60px] tracking-[2px] sm:tracking-[4px] mt-4 sm:mt-8">
+          <h2 className="text-[28px] sm:text-[48px] font-inter font-bold text-[#fafafa] leading-[38px] sm:leading-[60px] tracking-wide mt-3 sm:mt-6">
             Enhance Your Music Experience
-          </h1>
+          </h2>
 
-          <div className="flex flex-wrap gap-4 sm:gap-6 items-center mt-6 sm:mt-10">
+       
+          <div className="flex gap-3 sm:gap-6 items-center mt-6 sm:mt-10">
             {["Days", "Hours", "Minutes", "Seconds"].map((label) => (
-              <div key={label} className="flex flex-col items-center justify-center h-[60px] sm:h-[70px] w-[60px] sm:w-[70px] rounded-full bg-white shadow-md">
-                <span className="text-[14px] sm:text-[16px] font-poppins font-bold text-black leading-[18px] sm:leading-[20px]">
+              <div
+                key={label}
+                className="flex flex-col items-center justify-center h-[60px] sm:h-[70px] w-[60px] sm:w-[70px] rounded-full bg-white shadow-lg"
+              >
+                <span className="text-[16px] sm:text-[18px] font-poppins font-bold text-black">
                   {count[label.toLowerCase()]}
                 </span>
-                <span className="text-[10px] sm:text-[11px] font-poppins font-normal text-black leading-[16px] sm:leading-[18px]">
+                <span className="text-[10px] sm:text-[12px] font-poppins text-gray-700">
                   {label}
                 </span>
               </div>
             ))}
           </div>
 
-          <button className="bg-[#00ff66] w-full sm:w-[234px] h-[45px] sm:h-[50px] rounded-sm hover:scale-110 transition-transform cursor-pointer ease-linear duration-300 text-white mt-6 sm:mt-10">
+          
+          <button className="flex items-center justify-center gap-2 bg-[#00ff66] w-full sm:w-[234px] h-[45px] sm:h-[50px] rounded-md hover:scale-110 transition-transform cursor-pointer ease-linear duration-300 text-white font-medium mt-6 sm:mt-10">
+            <FaShoppingCart size={18} />
             Buy Now!
           </button>
         </div>
       </div>
     </div>
-
   );
 };
 

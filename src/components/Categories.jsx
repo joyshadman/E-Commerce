@@ -47,7 +47,6 @@ const Categories = () => {
 
   return (
     <section className="container mx-auto px-4 my-10  ">
-      {/* Section Header */}
       <div className="flex items-center gap-3 mb-4 ">
         <div className="w-[20px] h-[40px] bg-[#db4444]"></div>
         <h1 className="text-[16px] font-poppins font-[600] text-[#db4444]">
@@ -76,7 +75,7 @@ const Categories = () => {
         </div>
       </div>
 
-      {/* Categories Slider */}
+   
       <Slider ref={sliderRef} {...settings}>
         {categories.map((cat, idx) => (
           <div key={idx} className="px-2">

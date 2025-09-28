@@ -7,6 +7,7 @@ import Month from "../components/Month.jsx";
 import Banner from "../components/Banner.jsx";
 import Product from "../components/product.jsx";  
 import Arrivable from "../components/Arrivable.jsx";
+import Footer from "../components/Footer.jsx";
 
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
       <Banner />
       <Product />
       <Arrivable/>
+      <Footer/>
 
     </div>
   );
