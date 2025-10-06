@@ -3,12 +3,14 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Production from '../components/production'
 
+
 const productpage = () => {
   return (
     <div>
-        <Navbar/>
+      <Navbar/>
         <Production/>
-        <Footer/>
+
+      <Footer/>
     </div>
   )
 }

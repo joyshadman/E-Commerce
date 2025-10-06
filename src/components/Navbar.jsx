@@ -116,10 +116,12 @@ const Navbar = () => {
                   after:ease-in-out hover:after:left-0 hover:after:w-full">About</a>
             </li>
             <li className="relative py-2">
-              <a className="relative inline-block text-black hover:text-black
+              <Link to="/Signup">
+                <a className="relative inline-block text-black hover:text-black
                   after:absolute after:left-1/2 after:bottom-0 after:h-[2px] 
                   after:w-0 after:bg-black after:transition-all after:duration-300 
                   after:ease-in-out hover:after:left-0 hover:after:w-full">Sign Up</a>
+              </Link>
             </li>
           </ul>
 
@@ -134,7 +136,9 @@ const Navbar = () => {
               <CiSearch className="absolute right-2 top-1/2 -translate-y-1/2 text-[20px] text-black cursor-pointer hover:scale-105 transition-all duration-300" />
             </div>
             <FaRegHeart className="text-[22px] cursor-pointer hover:scale-105 transition-all duration-300" />
-            <IoCartOutline className="text-[25px] cursor-pointer hover:scale-105 transition-all duration-300" />
+            <Link to="/Cart">
+              <IoCartOutline className="text-[25px] cursor-pointer hover:scale-105 transition-all duration-300" />
+            </Link>
           </div>
 
   
