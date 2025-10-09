@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Cartslider from '../components/cartslider'
+import { FaStar } from "react-icons/fa";
 
 import ps5front from "../assets/product/ps5-1.png"
 import ps5 from "../assets/product/ps5-2.png"
@@ -36,10 +37,23 @@ const Cart = () => {
           <div className="w-[500px] h-[600px] bg-[#F5F5F5] relative">
             <img src={ps5banner} alt="ps5 front" className='absolute top-40 left-14 h-[300px] w-[400px]' />
           </div>
-        </div>
+          <div className="w-[400px] ">
+            <h1 className="text-2xl font-inter font-bold text-black leading-[24px] tracking-[3%]">Havic HV G-92 Gamepad</h1>
+            <div className="flex gap-0.5">
+            <FaStar className="text-[18px] text-[#FFAD33] mt-4" />
+            <FaStar className="text-[18px] text-[#FFAD33] mt-4" />
+            <FaStar className="text-[18px] text-[#FFAD33] mt-4" /> 
+            <FaStar className="text-[18px] text-[#FFAD33] mt-4" />
+            <FaStar className="text-[18px] text-[#000000] mt-4" /> 
+
+            <span className="text-sm text-gray-500 ml-2 mt-4">(150 Reviews)</span>
+            <div className="h-0.5 w-0.5 bg-gray-500"></div>
+            </div>
+          </div>
         </div>
         <Cartslider/>
-        <Footer/>       
+        </div>       
+        <Footer/>
     </div>
   )
 }
