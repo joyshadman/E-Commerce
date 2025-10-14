@@ -4,12 +4,12 @@ import Footer from '../components/Footer'
 import Production from '../components/production'
 
 
+
 const productpage = () => {
   return (
     <div>
       <Navbar/>
         <Production/>
-
       <Footer/>
     </div>
   )

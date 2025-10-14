@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import Apiproducts from "./Apiproducts";
+import Pagination from "./Pagination";
 
 const ShopPage = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -58,10 +59,10 @@ const ShopPage = () => {
           <h1 className="text-[20px] font-poppins font-[700] text-[#262626] leading-[0px] mt-[40px]">
             Shop by Color
           </h1>
-          <ul className="mt-10">
-            <li>color 1</li>
-            <li className="mt-3">color 2</li>
-            <li className="mt-3">color 3</li>
+          <ul className="mt-10 cursor-pointer">
+            <li className="flex"><div className="rounded-full bg-black w-3 h-3 mt-2 mr-2"></div>color 1</li>
+            <li className="flex mt-2"><div className="rounded-full bg-red-600 w-3 h-3 mt-2 mr-2"></div> color 2</li>
+            <li className="flex mt"><div className="rounded-full bg-green-500 w-3 h-3 mt-2 mr-2"></div>color 3</li>
           </ul>
         </div>
       </div>
@@ -69,6 +70,7 @@ const ShopPage = () => {
  
       <div className="flex-1 w-full mt-[80px] mb-40">
         <Apiproducts />
+        <Pagination itemsPerPage={4} />
       </div>
     </div>
   );
