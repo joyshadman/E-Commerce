@@ -136,9 +136,7 @@ const Navbar = () => {
               <CiSearch className="absolute right-2 top-1/2 -translate-y-1/2 text-[20px] text-black cursor-pointer hover:scale-105 transition-all duration-300" />
             </div>
             <FaRegHeart className="text-[22px] cursor-pointer hover:scale-105 transition-all duration-300" />
-            <Link to="/Cart">
-              <IoCartOutline className="text-[25px] cursor-pointer hover:scale-105 transition-all duration-300" />
-            </Link>
+            <IoCartOutline className="text-[25px] cursor-pointer hover:scale-105 transition-all duration-300" />
           </div>
 
   

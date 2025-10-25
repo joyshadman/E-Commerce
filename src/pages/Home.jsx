@@ -13,7 +13,7 @@ import Footer from "../components/Footer.jsx";
 const Home = () => {
   return (
     <div>
-      <Navbar />
+      <Navbar/>
       <Hero />
       <Today />
       <Categories />
@@ -22,7 +22,6 @@ const Home = () => {
       <Product />
       <Arrivable/>
       <Footer/>
-
     </div>
   );
 };
