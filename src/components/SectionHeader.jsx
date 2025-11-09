@@ -18,7 +18,7 @@ const SectionHeader = ({
 
         <div className="flex items-center gap-3 mb-4 mt-[100px]">
           <div
-            className="w-[20px] h-[40px]"
+            className="w-[20px] h-[40px] rounded-sm"
             style={{ backgroundColor: highlightColor }}
           ></div>
           <h1

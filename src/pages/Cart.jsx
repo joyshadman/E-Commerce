@@ -1,83 +1,105 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Cartslider from "../components/cartslider";
 import { FaStar, FaTruck, FaUndoAlt, FaRegHeart } from "react-icons/fa";
+import Breadcrumb from "../components/Breadcrumb";
+import SectionHeader from "../components/SectionHeader";
 
-import ps5front from "../assets/product/ps5-1.png";
-import ps5 from "../assets/product/ps5-2.png";
-import ps5sit from "../assets/product/ps5-3.png";
-import ps5tilted from "../assets/product/ps5-4.png";
-import ps5banner from "../assets/product/ps5banner.png";
 
 const Cart = () => {
-  const [quantity, setQuantity] = useState(2);
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   const increase = () => setQuantity((prev) => prev + 1);
   const decrease = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
+  useEffect(() => {
+    fetch(`https://dummyjson.com/products/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setProduct(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [id]);
+
+  if (loading)
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <p className="text-lg text-gray-500 animate-pulse">
+          Loading product details...
+        </p>
+      </div>
+    );
+
+  if (!product)
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <p className="text-lg text-gray-500">Product not found.</p>
+      </div>
+    );
 
   return (
     <div>
       <Navbar />
 
       <div className="container mx-auto">
-        <h1 className="mt-[80px] mb-[80px]">
-          Account / Gaming / Havic HV G-92 Gamepad
-        </h1>
+        <div className="mt-[80px] mb-[80px]">
+          <Breadcrumb category={product.category} product={product} />
 
-        <div className="flex justify-between">
+        </div>
+
+        <div className="flex justify-between flex-wrap gap-10">
           {/* Left Thumbnails */}
-          <div className="w-[188px] h-[615px]">
-            {[ps5front, ps5, ps5sit, ps5tilted].map((img, i) => (
+          <div className="w-[188px] h-[615px] overflow-y-auto">
+            {product.images.slice(0, 4).map((img, i) => (
               <div
                 key={i}
-                className="h-[138px] w-[170px] bg-[#F5F5F5] mb-4 cursor-pointer"
+                className="h-[138px] w-[170px] bg-[#F5F5F5] mb-4 cursor-pointer flex items-center justify-center"
               >
-                <img src={img} alt={`ps5-${i}`} className="mx-auto pt-4" />
+                <img
+                  src={img}
+                  alt={`${product.title}-${i}`}
+                  className="max-h-[120px] object-contain"
+                />
               </div>
             ))}
           </div>
 
-          {/* Center Main Image */}
-          <div className="w-[500px] h-[600px] bg-[#F5F5F5] relative">
+          {/* Main Image */}
+          <div className="w-[500px] h-[600px] bg-[#F5F5F5] flex items-center justify-center">
             <img
-              src={ps5banner}
-              alt="ps5 banner"
-              className="absolute top-40 left-14 h-[300px] w-[400px]"
+              src={product.thumbnail}
+              alt={product.title}
+              className="h-[400px] object-contain"
             />
           </div>
 
-          {/* Right Details */}
-          <div className="w-[400px]">
-            <h1 className="text-2xl font-bold">Havic HV G-92 Gamepad</h1>
+          {/* Right Side Details */}
+          <div className="w-[350px]">
+            <h1 className="text-2xl font-bold">{product.title}</h1>
 
-            {/* Stars */}
+            {/* Rating */}
             <div className="flex gap-0.5 items-center mt-3">
-              {[...Array(4)].map((_, i) => (
+              {[...Array(Math.floor(product.rating))].map((_, i) => (
                 <FaStar key={i} className="text-[#FFAD33] text-[18px]" />
               ))}
-              <FaStar className="text-[#000000] text-[18px]" />
               <span className="text-sm text-gray-500 ml-2">
-                (150 Reviews)
+                ({product.rating} / 5)
                 <span className="text-[#00FF66] ml-3">In Stock</span>
               </span>
             </div>
 
-            <h1 className="text-[30px] mt-4">$192.00</h1>
+            <h1 className="text-[30px] mt-4">${product.price}</h1>
             <p className="text-[14px] text-gray-700 w-[303px] mt-6">
-              PlayStation 5 Controller Skin High quality vinyl with air channel
-              adhesive for easy bubble free install & mess free removal Pressure
-              sensitive.
+              {product.description}
             </p>
 
             <div className="w-[303px] bg-black h-[1px] mt-6"></div>
-
-            {/* Colors */}
-            <div className="flex gap-4 mt-4 items-center">
-              <h1 className="text-[20px] font-[400]">Colors:</h1>
-              <div className="bg-[#A0BCE0] h-5 w-5 rounded-full hover:border-2 border-black cursor-pointer"></div>
-              <div className="bg-[#E07575] h-5 w-5 rounded-full hover:border-2 border-black cursor-pointer"></div>
-            </div>
 
             {/* Sizes */}
             <div className="flex gap-3 mt-4 items-center">
@@ -85,7 +107,7 @@ const Cart = () => {
               {["XS", "S", "M", "L", "XL"].map((size) => (
                 <div
                   key={size}
-                  className="border border-black h-7 w-7 flex justify-center items-center rounded-sm hover:bg-[#E07575] hover:text-white cursor-pointer"
+                  className="border border-black h-7 w-7 flex justify-center items-center ease-in-out cursor-pointer duration-300 rounded-sm hover:bg-[#DB4444] hover:text-white "
                 >
                   {size}
                 </div>
@@ -94,29 +116,28 @@ const Cart = () => {
 
             {/* Buy Now Section */}
             <div className="w-full mt-6 space-y-4">
-              {/* Quantity + Buttons */}
-              <div className="flex items-center justify-between">
-                <div className="flex border rounded-md overflow-hidden">
+              <div className="flex items-center justify-between ">
+                <div className="flex border rounded-md overflow-hidden ">
                   <button
                     onClick={decrease}
-                    className="px-3 py-2 border-r hover:bg-gray-100"
+                    className="px-3 py-2 border-r hover:bg-[#DB4444]  ease-in-out cursor-pointer duration-300  hover:text-white"
                   >
                     −
                   </button>
-                  <span className="px-4 py-2">{quantity}</span>
+                  <span className="px-8 py-2">{quantity}</span>
                   <button
                     onClick={increase}
-                    className="px-3 py-2 border-l hover:bg-gray-100"
+                    className="px-3 py-2 border-l hover:bg-[#DB4444] ease-in-out cursor-pointer duration-300  hover:text-white"
                   >
                     +
                   </button>
                 </div>
 
-                <button className="bg-red-500 text-white font-semibold px-4 py-2 rounded-md hover:bg-red-600">
+                <button className="bg-[#DB4444] text-white  ease-in-out cursor-pointer duration-300  font-semibold px-8 py-2 rounded-md hover:bg-[#DB4444]">
                   Buy Now
                 </button>
 
-                <button className="p-2 border rounded-md hover:bg-gray-100">
+                <button className="p-2 border rounded-md  ease-in-out cursor-pointer duration-300  hover:bg-[#DB4444] hover:text-white">
                   <FaRegHeart size={18} />
                 </button>
               </div>
@@ -148,6 +169,7 @@ const Cart = () => {
           </div>
         </div>
 
+        <SectionHeader sectionTitle="" monthText="Related Items" />
         <Cartslider />
       </div>
 
