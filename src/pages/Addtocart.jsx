@@ -3,7 +3,11 @@ import Breadcrumb from "../components/Breadcrumb";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Btn from "../components/Btn";
-import { IoClose } from "react-icons/io5"; // ❌ cross icon
+import { IoClose } from "react-icons/io5"; 
+import { Link } from "react-router-dom";
+
+
+
 
 const Addtocart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -33,26 +37,22 @@ const Addtocart = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center w-[1170px] mx-auto">
-          {/* Header Row */}
-          <div className="grid grid-cols-4 text-base font-poppins text-black font-normal leading-6 w-full border-b pb-3 mb-3 text-center">
+          <div className="grid grid-cols-4 text-base font-poppins text-black font-normal leading-6 w-full shadow-sm pb-3 mb-3 text-center">
             <h1>Product</h1>
             <h1>Price</h1>
             <h1>Quantity</h1>
             <h1>Subtotal</h1>
           </div>
 
-          {/* Cart Items */}
           {cartItems.length === 0 ? (
             <p className="mt-10 text-gray-500">Your cart is empty.</p>
           ) : (
             cartItems.map((item) => (
               <div
                 key={item.id}
-                className="grid grid-cols-4 text-base font-poppins text-black font-normal w-full py-4 border-b items-center text-center"
+                className="grid grid-cols-4 text-base font-poppins text-black font-normal w-full py-4 shadow-sm items-center text-center"
               >
-                {/* Product */}
                 <div className="flex items-center gap-4 justify-start relative">
-                  {/* ❌ Remove Button */}
                   <button
                     onClick={() => handleRemove(item.id)}
                     className="absolute -left-[-10px] top-1/4 transform cursor-pointer -translate-y-1/2 bg-[#DB4444] hover:bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center shadow-md"
@@ -67,28 +67,23 @@ const Addtocart = () => {
                   />
                   <h1 className="text-left">{item.name}</h1>
                 </div>
-
-                {/* Price */}
                 <h1>${item.price}</h1>
-
-                {/* Quantity */}
                 <h1>{item.quantity}</h1>
-
-                {/* Subtotal */}
                 <h1>${(item.price * item.quantity).toFixed(2)}</h1>
               </div>
             ))
           )}
 
-          {/* Buttons */}
-          <div className="flex justify-between mt-10 w-full">
-            <Btn
-              bgColor="white"
-              label="Return To Shop"
-              textColor="black"
-              borderColor="black"
-              borderWidth="1px"
-            />
+          <div className="flex justify-between gap-160 mt-10 w-full">
+            <Link to="/productpage">
+              <Btn
+                bgColor="white"
+                label="Return To Shop"
+                textColor="black"
+                borderColor="black"
+                borderWidth="1px"
+              />
+            </Link>
             <Btn
               bgColor="white"
               label="Update Cart"
@@ -98,8 +93,21 @@ const Addtocart = () => {
             />
           </div>
 
-          {/* Cart Totals */}
+
           <div className="w-full flex justify-end mt-10">
+            <div className="h-[51px] w-[530px] flex   gap-4 mr-40">
+              <input
+                type="text"
+                placeholder="Coupon code"
+                className="w-[300px] h-12 border border-black rounded-md p-4 font-poppins text-base font-normal outline-none"
+              />
+              <Btn
+                bgColor="#DB4444"
+                label="Apply Coupont"
+                textColor="White"
+                marginTop="0px"
+            />
+            </div>
             <div className="h-[354px] w-[470px] border border-black p-6 rounded-md">
               <h1 className="text-[20px] font-poppins font-[500] mb-5">
                 Cart Totals

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaRegHeart, FaStar } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast"
+import { toast } from "react-hot-toast";
 
 
 const Card = ({ product }) => {
@@ -13,7 +13,7 @@ const Card = ({ product }) => {
     navigate(`/product/${product.id}`);
   };
 
-  // ✅ Add to Cart function
+
   const handleAddToCart = () => {
     const storedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
 
@@ -27,7 +27,6 @@ const Card = ({ product }) => {
     localStorage.setItem("cartItems", JSON.stringify(updatedCart));
     toast.success("Added to cart");
 
-    // ✅ Dispatch event so Navbar updates immediately
     window.dispatchEvent(new Event("cartUpdated"));
   };
 
