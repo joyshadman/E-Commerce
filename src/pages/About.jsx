@@ -4,19 +4,22 @@ import Footer from '../components/Footer'
 import { FaInstagram, FaTwitter, FaLinkedinIn } from "react-icons/fa";
 import Breadcrumb from '../components/Breadcrumb';
 
+// Images 
+import img1 from '../assets/african.png'
+
+
 
 const About = () => {
   return (
     <div>
       <Navbar />
-      <div className="container mx-auto px-4 md:px-10 lg:px-20 py-10">
+      <div className="container mx-auto">
         <div className="mt-20 mb-20">
           <Breadcrumb/>
         </div>
         <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-20 mb-16">
-          {/* Text Content */}
           <div className="lg:w-1/2 text-center lg:text-left">
-            <h2 className="text-3xl sm:text-4xl font-semibold mb-4">Our Story</h2>
+            <h2 className="text-3xl sm:text-5xl font-semibold mb-10">Our Story</h2>
             <p className="text-gray-700 text-[15px] leading-relaxed">
               Launched in 2015, Exclusive is South Asia’s premier online shopping marketplace with an active presence in
               Bangladesh. Supported by a wide range of tailored marketing, data, and service solutions, Exclusive has
@@ -29,11 +32,11 @@ const About = () => {
           </div>
 
           {/* Image */}
-          <div className="lg:w-1/2 flex justify-center">
+          <div className="lg:w-1/2 flex justify-center ">
             <img
-              src="https://via.placeholder.com/500x400"
+              src={img1}
               alt="Our Story"
-              className="rounded-lg object-cover w-full max-w-[500px] shadow-md"
+              className="rounded-lg object-cover h-[609px] w-[705px] shadow-md"
             />
           </div>
         </div>
@@ -61,9 +64,7 @@ const About = () => {
           </div>
         </div>
 
-        {/* 🔹 Team Section */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-20">
-          {/* Member 1 */}
           <div className="flex flex-col items-center">
             <img
               src="https://via.placeholder.com/250x250"

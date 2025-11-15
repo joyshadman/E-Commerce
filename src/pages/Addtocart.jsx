@@ -3,11 +3,8 @@ import Breadcrumb from "../components/Breadcrumb";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Btn from "../components/Btn";
-import { IoClose } from "react-icons/io5"; 
+import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
-
-
-
 
 const Addtocart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -37,6 +34,8 @@ const Addtocart = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center w-[1170px] mx-auto">
+
+          {/* Header */}
           <div className="grid grid-cols-4 text-base font-poppins text-black font-normal leading-6 w-full shadow-sm pb-3 mb-3 text-center">
             <h1>Product</h1>
             <h1>Price</h1>
@@ -44,6 +43,7 @@ const Addtocart = () => {
             <h1>Subtotal</h1>
           </div>
 
+          {/* Cart Items */}
           {cartItems.length === 0 ? (
             <p className="mt-10 text-gray-500">Your cart is empty.</p>
           ) : (
@@ -52,6 +52,7 @@ const Addtocart = () => {
                 key={item.id}
                 className="grid grid-cols-4 text-base font-poppins text-black font-normal w-full py-4 shadow-sm items-center text-center"
               >
+                {/* Product */}
                 <div className="flex items-center gap-4 justify-start relative">
                   <button
                     onClick={() => handleRemove(item.id)}
@@ -67,8 +68,35 @@ const Addtocart = () => {
                   />
                   <h1 className="text-left">{item.name}</h1>
                 </div>
+
+                {/* Price */}
                 <h1>${item.price}</h1>
-                <h1>{item.quantity}</h1>
+
+                {/* Quantity */}
+                <div className="flex items-center justify-center">
+                  <input
+                    type="number"
+                    value={item.quantity}
+                    min="1"
+                    onChange={(e) =>
+                      setCartItems(
+                        cartItems.map((cartItem) =>
+                          cartItem.id === item.id
+                            ? {
+                              ...cartItem,
+                              quantity:
+                                parseInt(e.target.value) > 0
+                                  ? parseInt(e.target.value)
+                                  : 1,
+                            }
+                            : cartItem
+                        )
+                      )
+                    }
+                    className="w-[60px] h-12 border border-gray-400 rounded-md text-center font-poppins text-base outline-none"
+                  />
+                </div>
+
                 <h1>${(item.price * item.quantity).toFixed(2)}</h1>
               </div>
             ))
@@ -84,6 +112,7 @@ const Addtocart = () => {
                 borderWidth="1px"
               />
             </Link>
+
             <Btn
               bgColor="white"
               label="Update Cart"
@@ -93,21 +122,16 @@ const Addtocart = () => {
             />
           </div>
 
-
           <div className="w-full flex justify-end mt-10">
-            <div className="h-[51px] w-[530px] flex   gap-4 mr-40">
+            <div className="h-[51px] w-[530px] flex gap-4 mr-40">
               <input
                 type="text"
                 placeholder="Coupon code"
                 className="w-[300px] h-12 border border-black rounded-md p-4 font-poppins text-base font-normal outline-none"
               />
-              <Btn
-                bgColor="#DB4444"
-                label="Apply Coupont"
-                textColor="White"
-                marginTop="0px"
-            />
+              <Btn bgColor="#DB4444" label="Apply Coupon" textColor="White" marginTop="0px"/>
             </div>
+
             <div className="h-[354px] w-[470px] border border-black p-6 rounded-md">
               <h1 className="text-[20px] font-poppins font-[500] mb-5">
                 Cart Totals
