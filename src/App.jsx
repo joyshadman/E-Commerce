@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Addtocart from "./pages/Addtocart";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import Wishlist from "./pages/Wishlist";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/addtocart" element={<Addtocart/>} />
         <Route path="/Contact" element={<Contact/>} />
         <Route path="/About" element={<About/>} />
+         <Route path="/Wishlist" element={<Wishlist/>} />
 
       </Routes>
     </Router>

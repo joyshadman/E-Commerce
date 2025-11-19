@@ -10,24 +10,32 @@ const Navbar = () => {
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [wishlistCount, setWishlistCount] = useState(0);
 
   const languages = ["Bangla", "Arabic", "French", "Spanish", "German", "Italian", "Turkish"];
 
   useEffect(() => {
-    const updateCartCount = () => {
+    const updateCounts = () => {
       const storedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
+      const storedWishlist = JSON.parse(localStorage.getItem("wishlistItems")) || [];
       setCartCount(storedCart.length);
+      setWishlistCount(storedWishlist.length);
     };
 
-    updateCartCount();
-    window.addEventListener("cartUpdated", updateCartCount);
-    return () => window.removeEventListener("cartUpdated", updateCartCount);
+    updateCounts();
+    window.addEventListener("cartUpdated", updateCounts);
+    window.addEventListener("wishlistUpdated", updateCounts);
+
+    return () => {
+      window.removeEventListener("cartUpdated", updateCounts);
+      window.removeEventListener("wishlistUpdated", updateCounts);
+    };
   }, []);
 
   return (
     <>
-      {/* 🔹 Top Black Bar */}
       <div className="bg-black w-full text-[#fafafa] text-[14px]">
+        {/* Top promo bar */}
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 py-2 gap-2 md:gap-0">
           <div className="hidden md:block" />
 
@@ -57,7 +65,6 @@ const Navbar = () => {
               />
             </button>
 
-            {/* 🌍 Language Dropdown */}
             {isLangOpen && (
               <div
                 className="absolute right-0 mt-2 w-28 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50 animate-fadeIn"
@@ -79,10 +86,8 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* 🔹 Main Navbar */}
       <div className="border-b border-gray-400 mt-5">
         <div className="container flex justify-between items-center py-4 px-4 md:px-0">
-          {/* Logo */}
           <Link to="/">
             <img
               src={logo}
@@ -91,15 +96,8 @@ const Navbar = () => {
             />
           </Link>
 
-          {/* Desktop Menu */}
           <ul className="hidden sm:flex gap-8 text-[15px] font-[450]">
-            {[
-              { name: "Home", path: "/" },
-              { name: "Shop", path: "/productpage" },
-              { name: "Contact", path: "/Contact" },
-              { name: "About", path: "/About" },
-              { name: "Sign Up", path: "/Signup" },
-            ].map((item, index) => (
+            {[{ name: "Home", path: "/" }, { name: "Shop", path: "/productpage" }, { name: "Contact", path: "/Contact" }, { name: "About", path: "/About" }, { name: "Sign Up", path: "/Signup" }].map((item, index) => (
               <li key={index} className="relative group">
                 <Link
                   to={item.path}
@@ -114,7 +112,6 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Right Side Icons */}
           <div className="hidden sm:flex items-center gap-6">
             <div className="relative">
               <input
@@ -125,19 +122,26 @@ const Navbar = () => {
               <CiSearch className="absolute right-2 top-1/2 -translate-y-1/2 text-[20px] text-black cursor-pointer hover:scale-110 transition-all duration-300" />
             </div>
 
-            <FaRegHeart className="text-[22px] cursor-pointer hover:scale-110 transition-all duration-300" />
+            <Link to="/Wishlist" className="relative">
+              <FaRegHeart className="text-[22px] cursor-pointer hover:scale-110 transition-all duration-300" />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center ">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
 
+            {/* Cart icon */}
             <Link to="/addtocart" className="relative">
               <IoCartOutline className="text-[25px] cursor-pointer hover:scale-110 transition-all duration-300" />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center ">
                   {cartCount}
                 </span>
               )}
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="sm:hidden text-3xl cursor-pointer transition-all duration-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -146,20 +150,14 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* 🔹 Mobile Dropdown Menu */}
+        {/* Mobile menu */}
         <div
           className={`sm:hidden bg-white w-full px-4 py-4 border-t border-gray-200 transition-all duration-500 overflow-hidden ${
             isMobileMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
           <ul className="flex flex-col gap-4 text-black font-[450]">
-            {[
-              { name: "Home", path: "/" },
-              { name: "Shop", path: "/productpage" },
-              { name: "Contact", path: "/Contact" },
-              { name: "About", path: "/About" },
-              { name: "Sign Up", path: "/Signup" },
-            ].map((item, index) => (
+            {[{ name: "Home", path: "/" }, { name: "Shop", path: "/productpage" }, { name: "Contact", path: "/Contact" }, { name: "About", path: "/About" }, { name: "Sign Up", path: "/Signup" }].map((item, index) => (
               <li key={index}>
                 <Link
                   to={item.path}
@@ -183,7 +181,15 @@ const Navbar = () => {
             </div>
 
             <div className="flex gap-4 mt-2">
-              <FaRegHeart className="text-[22px]" />
+              <div className="relative">
+                <FaRegHeart className="text-[22px]" />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                    {wishlistCount}
+                  </span>
+                )}
+              </div>
+
               <Link to="/addtocart" onClick={() => setIsMobileMenuOpen(false)}>
                 <IoCartOutline className="text-[25px]" />
               </Link>

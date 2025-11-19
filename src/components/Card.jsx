@@ -1,18 +1,24 @@
-import React, { useState } from "react";
-import { FaRegHeart, FaStar } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaRegHeart, FaHeart, FaStar } from "react-icons/fa";
 import { AiOutlineEye } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
-
 const Card = ({ product }) => {
-  const [loaded, setLoaded] = useState(false); 
+  const [loaded, setLoaded] = useState(false);
+  const [isWishlisted, setIsWishlisted] = useState(false);
   const navigate = useNavigate();
+
+  // Load wishlist state
+  useEffect(() => {
+    const storedWishlist = JSON.parse(localStorage.getItem("wishlistItems")) || [];
+    const exists = storedWishlist.find((item) => item.id === product.id);
+    setIsWishlisted(!!exists);
+  }, [product.id]);
 
   const handleImageClick = () => {
     navigate(`/product/${product.id}`);
   };
-
 
   const handleAddToCart = () => {
     const storedCart = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -28,6 +34,25 @@ const Card = ({ product }) => {
     toast.success("Added to cart");
 
     window.dispatchEvent(new Event("cartUpdated"));
+  };
+
+  // Add / Remove Wishlist
+  const handleWishlistToggle = () => {
+    const storedWishlist = JSON.parse(localStorage.getItem("wishlistItems")) || [];
+
+    if (isWishlisted) {
+      const updated = storedWishlist.filter((item) => item.id !== product.id);
+      localStorage.setItem("wishlistItems", JSON.stringify(updated));
+      setIsWishlisted(false);
+      toast.error("Removed from Wishlist");
+    } else {
+      const updated = [...storedWishlist, product];
+      localStorage.setItem("wishlistItems", JSON.stringify(updated));
+      setIsWishlisted(true);
+      toast.success("Added to Wishlist ❤️");
+    }
+
+    window.dispatchEvent(new Event("wishlistUpdated"));
   };
 
   const SkeletonCard = () => (
@@ -75,8 +100,17 @@ const Card = ({ product }) => {
         </div>
 
         <div className="absolute top-3 right-4 flex flex-col gap-2">
-          <div className="bg-white h-[34px] w-[34px] rounded-full flex items-center justify-center shadow hover:scale-110 transition-transform cursor-pointer">
-            <FaRegHeart className="text-gray-500" />
+
+          {/* WISHLIST BUTTON */}
+          <div
+            onClick={handleWishlistToggle}
+            className="bg-white h-[34px] w-[34px] rounded-full flex items-center justify-center shadow hover:scale-110 transition-transform cursor-pointer"
+          >
+            {isWishlisted ? (
+              <FaHeart className="text-red-500" />
+            ) : (
+              <FaRegHeart className="text-gray-500" />
+            )}
           </div>
 
           <Link

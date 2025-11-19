@@ -29,7 +29,6 @@ const SectionHeader = ({
           </h1>
         </div>
 
-        {/* Title + Controls */}
         <div className="flex justify-between items-center mb-14">
           <h2 className="text-[36px] font-inter font-[600] text-[#000000] leading-[48px]">
             {sectionTitle}
