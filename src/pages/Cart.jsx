@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Cartslider from "../components/cartslider";
+import Cartslider from "../components/Cartslider";
 import { FaStar, FaTruck, FaUndoAlt, FaRegHeart } from "react-icons/fa";
 import Breadcrumb from "../components/Breadcrumb";
 import SectionHeader from "../components/SectionHeader";
@@ -54,7 +54,6 @@ const Cart = () => {
         </div>
 
         <div className="flex justify-between flex-wrap gap-10">
-          {/* Left Thumbnails */}
           <div className="w-[188px] h-[615px] overflow-y-auto">
             {product.images.slice(0, 4).map((img, i) => (
               <div

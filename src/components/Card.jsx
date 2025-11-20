@@ -4,6 +4,8 @@ import { AiOutlineEye } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 
+
+
 const Card = ({ product }) => {
   const [loaded, setLoaded] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
